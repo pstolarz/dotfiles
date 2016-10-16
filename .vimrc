@@ -41,7 +41,7 @@ mapclear!
 "noremap <C-Up> <C-Y>
 "noremap <C-Down> <C-E>
 
-set listchars=tab:>-,trail:-,extends:>,precedes:<,eol:Â¬
+set listchars=tab:>-,trail:-,extends:>,precedes:<,eol:¬
 
 " soft-tab set to 4 spaces
 set sts=4 sw=4 et
