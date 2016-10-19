@@ -29,6 +29,8 @@ if has("statusline")
   set statusline+=\ %P
 endif
 
+set path+=./inc,./include
+
 if has("unix")
   language en_US.UTF-8
 else
