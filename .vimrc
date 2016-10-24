@@ -6,8 +6,14 @@ set vb t_vb=
 " no extra keybidings except ones defined in this script
 mapclear
 mapclear!
+
 "noremap <C-Up> <C-Y>
 "noremap <C-Down> <C-E>
+
+vnoremap <Leader>k @=":m '<-2\rgv"<CR>
+vnoremap <Leader><Up> @=":m '<-2\rgv"<CR>
+vnoremap <Leader>j :m @="'>+1\rgv"<CR>
+vnoremap <Leader><Down> @=":m '>+1\rgv"<CR>
 
 if has("mouse")
   set mouse=a
