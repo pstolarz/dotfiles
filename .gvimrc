@@ -7,3 +7,5 @@ if has("unix")
 else
   set guifont=Consolas:h10
 endif
+
+" vim: set et ts=2 sw=2 sts=0:

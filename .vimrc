@@ -3,6 +3,12 @@ set backspace=indent,eol,start
 set background=dark
 set vb t_vb=
 
+" no extra keybidings except ones defined in this script
+mapclear
+mapclear!
+"noremap <C-Up> <C-Y>
+"noremap <C-Down> <C-E>
+
 if has("mouse")
   set mouse=a
 endif
@@ -11,6 +17,7 @@ if has("extra_search")
   set incsearch
   set hlsearch
   noh
+  nnoremap <Leader>n :noh<CR>
 endif
 
 set number
@@ -36,12 +43,6 @@ if has("unix")
 else
   language English
 endif
-
-" no extra keybidings except ones defined below
-mapclear
-mapclear!
-"noremap <C-Up> <C-Y>
-"noremap <C-Down> <C-E>
 
 set listchars=tab:»\ ,space:·,eol:¬
 "set listchars=tab:>-,trail:-,eol:$
@@ -89,3 +90,5 @@ if has("syntax")
   set colorcolumn=80
   syntax on
 endif
+
+" vim: set et ts=2 sw=2 sts=0:
