@@ -1,6 +1,7 @@
 set nocompatible
 set backspace=indent,eol,start
 set background=dark
+set notimeout
 set vb t_vb=
 
 " no extra keybidings except ones defined in this script
@@ -12,7 +13,7 @@ mapclear!
 
 vnoremap <Leader>k @=":m '<-2\rgv"<CR>
 vnoremap <Leader><Up> @=":m '<-2\rgv"<CR>
-vnoremap <Leader>j :m @="'>+1\rgv"<CR>
+vnoremap <Leader>j @=":m '>+1\rgv"<CR>
 vnoremap <Leader><Down> @=":m '>+1\rgv"<CR>
 
 if has("mouse")
