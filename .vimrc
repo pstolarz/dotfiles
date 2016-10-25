@@ -37,7 +37,7 @@ if has("statusline")
   set laststatus=2
   set statusline=%n>%<
   set statusline+=%F%m
-  set statusline+=\ [%Y\ %{&ff}\ %{&enc}%{&fenc!=''&&\ &fenc!=&enc?'->'.&fenc:''}]
+  set statusline+=\ [%{&ft!=''?toupper(&ft):'?'}\ %{&ff}\ %{&enc}%{&fenc!=''&&\ &fenc!=&enc?'->'.&fenc:''}]
   set statusline+=%=\ L%l/%L\ C%c%V
   "set statusline+=\ [0x%{printf('%X',line2byte(line('.'))+col('.')-2)}]
   set statusline+=\ %P
