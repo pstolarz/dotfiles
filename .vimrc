@@ -98,4 +98,8 @@ if has("syntax")
   syntax on
 endif
 
+" :Man command support
+runtime! ftplugin/man.vim
+nnoremap <Leader>K :Man <C-R><C-W><CR>
+
 " vim: set et ts=2 sw=2 sts=0:
