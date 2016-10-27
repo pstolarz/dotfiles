@@ -1,7 +1,10 @@
 set background=light
 set vb t_vb=
 
-set guioptions-=T
+set guioptions-=tT
+set guioptions-=a
+set guioptions+=A
+
 if has("unix")
   set guifont=Monospace\ 9
 else
