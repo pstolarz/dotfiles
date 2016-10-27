@@ -11,6 +11,8 @@ mapclear!
 "noremap <C-Up> <C-Y>
 "noremap <C-Down> <C-E>
 
+nnoremap <Leader><Leader> /\V
+
 vnoremap <Leader>k @=":m '<-2\rgv"<CR>
 vnoremap <Leader><Up> @=":m '<-2\rgv"<CR>
 vnoremap <Leader>j @=":m '>+1\rgv"<CR>
