@@ -8,7 +8,7 @@ set guioptions+=A
 if has("unix")
   set guifont=Monospace\ 9
 else
-  set guifont=Consolas:h10
+  set guifont=Consolas:h9
 endif
 
 " vim: set et ts=2 sw=2 sts=0:
