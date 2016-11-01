@@ -60,7 +60,7 @@ set listchars+=extends:>,precedes:<
 " soft-tab set to 4 spaces
 set sts=4 sw=4 et
 
-if (has("eval"))
+if has("eval")
   function s:set_tab(set, ...)
     if (a:0 <= 0)
       echo "expandtab:".(&et?"space":"tab")." softtabstop:".&sts." shiftwidth:".&sw." tabstop:".&ts
@@ -87,6 +87,12 @@ if (has("eval"))
 
   vnoremap <Leader>* y:exe '/\V'.tr(escape(@","\\/\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>
   vnoremap <Leader># y:exe '?\V'.tr(escape(@","\\?\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>
+endif
+
+if has("cindent")
+  " fix default indents
+  set cinoptions=:0,g0,t0,(s
+  "set cinoptions+=N-s
 endif
 
 filetype plugin indent on
