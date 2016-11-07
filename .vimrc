@@ -8,24 +8,35 @@ set vb t_vb=
 mapclear
 mapclear!
 
-"noremap <C-Up> <C-Y>
-"noremap <C-Down> <C-E>
+noremap <C-Up> <C-Y>
+noremap <C-Down> <C-E>
 
+" no-magic search
 nnoremap <Leader><Leader> /\V
 
+" single line block moves
 vnoremap <Leader>k @=":m '<-2\rgv"<CR>
 vnoremap <Leader><Up> @=":m '<-2\rgv"<CR>
 vnoremap <Leader>j @=":m '>+1\rgv"<CR>
 vnoremap <Leader><Down> @=":m '>+1\rgv"<CR>
 
+" <C-R> extensions: curent dir/file/full file path
+noremap! <C-R><C-E><C-W> <C-R>=getcwd()<CR>
+noremap! <C-R><C-E><C-F> <C-R>=expand("%")<CR>
+noremap! <C-R><C-E><C-P> <C-R>=expand("%:p")<CR>
+
 if has("mouse")
   set mouse=a
+endif
+
+if has("quickfix")
+  " like <C-W><C-I> but in preview
+  nnoremap <Leader><C-W><C-I> :ps <C-R><C-W><CR>
 endif
 
 if has("extra_search")
   set incsearch
   set hlsearch
-  noh
   nnoremap <Leader>n :noh<CR>
 endif
 
@@ -83,6 +94,7 @@ if has("eval")
   command -range Trim <line1>,<line2>s/\s\+$//
   command TrimAll %Trim
 
+  " selected block search
   vnoremap <Leader>* y:exe '/\V'.tr(escape(@","\\/\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>
   vnoremap <Leader># y:exe '?\V'.tr(escape(@","\\?\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>
 endif
