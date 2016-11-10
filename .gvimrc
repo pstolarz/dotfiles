@@ -1,4 +1,5 @@
 set background=light
+" no bell
 set vb t_vb=
 
 set guioptions-=tT

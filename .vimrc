@@ -1,7 +1,8 @@
 set nocompatible
 set backspace=indent,eol,start
-set background=dark
 set notimeout
+set background=dark
+" no bell
 set vb t_vb=
 
 " no extra keybidings except ones defined in this script
@@ -11,6 +12,7 @@ mapclear!
 noremap <C-Up> <C-Y>
 noremap <C-Down> <C-E>
 
+nnoremap <Leader>/ :set wrapscan!<CR>:set wrapscan?<CR>
 " no-magic search
 nnoremap <Leader><Leader> /\V
 
@@ -67,7 +69,7 @@ set listchars=tab:»\ ,space:·,eol:¬
 set listchars+=extends:>,precedes:<
 
 " soft-tab set to 4 spaces
-set sts=4 sw=4 et
+set softtabstop=4 shiftwidth=4 expandtab
 
 if has("eval")
   function s:set_tab(set, ...)
