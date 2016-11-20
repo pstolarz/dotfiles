@@ -2,6 +2,10 @@ set nocompatible
 set backspace=indent,eol,start
 set notimeout
 set background=dark
+
+set sessionoptions+=unix,slash
+set viewoptions+=unix,slash
+
 " no bell
 set vb t_vb=
 
