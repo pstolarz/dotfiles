@@ -1,4 +1,5 @@
 set background=light
+
 " no bell
 set vb t_vb=
 
@@ -9,6 +10,7 @@ set guioptions+=A
 if has("unix")
   set guifont=Monospace\ 9
 else
+  " windows settings
   set guifont=Consolas:h9
 endif
 

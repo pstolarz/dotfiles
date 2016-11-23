@@ -65,6 +65,8 @@ endif
 if has("unix")
   language en_US.UTF-8
 else
+  " windows settings
+  set grepprg=grep\ -n
   language English
 endif
 
