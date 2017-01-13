@@ -3,6 +3,7 @@ set background=light
 " no bell
 set vb t_vb=
 
+set guioptions-=m
 set guioptions-=tT
 set guioptions-=a
 set guioptions+=A
