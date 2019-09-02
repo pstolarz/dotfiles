@@ -110,6 +110,7 @@ endif
 if has("folding")
   " syntax folding method
   set foldmethod=syntax
+  set foldlevelstart=99
 endif
 
 if has("cindent")
