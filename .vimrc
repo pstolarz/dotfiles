@@ -107,6 +107,11 @@ if has("eval")
   vnoremap <Leader># y:exe '?\V'.tr(escape(@","\\?\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>
 endif
 
+if has("folding")
+  " syntax folding method
+  set foldmethod=syntax
+endif
+
 if has("cindent")
   " fix default indents
   set cinoptions=:0,g0,t0,(s
