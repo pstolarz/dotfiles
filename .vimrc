@@ -105,6 +105,18 @@ if has("eval")
   " selected block search
   vnoremap <Leader>* y:exe '/\V'.tr(escape(@","\\/\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>
   vnoremap <Leader># y:exe '?\V'.tr(escape(@","\\?\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>
+
+  function ByteOff()
+    let b:off = line2byte(line("."))+col(".")-2
+    if (b:off >= 0)
+      echo printf("off: %d, 0x%x", b:off, b:off)
+    else
+      echo "off: ?"
+    endif
+  endfunction
+
+  " byte offset of char under the cursor
+  nnoremap <Leader>o :call ByteOff()<CR>
 endif
 
 if has("folding")
