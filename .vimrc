@@ -3,8 +3,10 @@ set backspace=indent,eol,start
 set notimeout
 set background=dark
 
-set sessionoptions+=unix,slash
-set viewoptions+=unix,slash
+if has("mksession")
+  set sessionoptions+=unix,slash
+  set viewoptions+=unix,slash
+endif
 
 " no bell
 set vb t_vb=
@@ -134,7 +136,7 @@ endif
 filetype plugin indent on
 
 if has("insert_expand")
-  set completeopt+=noinsert
+  set completeopt+=menuone,noinsert
 endif
 
 if has("syntax")
@@ -145,5 +147,9 @@ endif
 " :Man command support
 runtime! ftplugin/man.vim
 nnoremap <Leader>K :Man <C-R><C-W><CR>
+
+" gtags plugin config
+let Gtags_No_Auto_Jump = 1
+nnoremap <Leader>g :Gtags <C-R><C-W><C-Left>
 
 " vim: set et ts=2 sw=2 sts=0:
