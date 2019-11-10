@@ -18,10 +18,6 @@ mapclear!
 noremap <C-Up> <C-Y>
 noremap <C-Down> <C-E>
 
-nnoremap <Leader>/ :set wrapscan!<CR>:set wrapscan?<CR>
-" no-magic search
-nnoremap <Leader><Leader> /\V
-
 " single line block moves
 vnoremap <Leader>k @=":m '<-2\rgv"<CR>
 vnoremap <Leader><Up> @=":m '<-2\rgv"<CR>
@@ -41,6 +37,12 @@ if has("quickfix")
   " like <C-W><C-I> but in preview
   nnoremap <Leader><C-W><C-I> :ps <C-R><C-W><CR>
 endif
+
+" no-magic search
+nnoremap <Leader>/ /\V
+nnoremap <Leader>? ?\V
+
+nnoremap <Leader><Leader> :set wrapscan!<CR>:set wrapscan?<CR>
 
 if has("extra_search")
   set incsearch
@@ -111,9 +113,9 @@ if has("eval")
   function ByteOff()
     let b:off = line2byte(line("."))+col(".")-2
     if (b:off >= 0)
-      echo printf("off: %d, 0x%x", b:off, b:off)
+      echo printf("Byte offset: %d, 0x%x", b:off, b:off)
     else
-      echo "off: ?"
+      echo "Byte offset: ?"
     endif
   endfunction
 
@@ -150,6 +152,6 @@ nnoremap <Leader>K :Man <C-R><C-W><CR>
 
 " gtags plugin config
 let Gtags_No_Auto_Jump = 1
-nnoremap <Leader>g :Gtags <C-R><C-W><C-Left>
+nnoremap <Leader>] :Gtags <C-R><C-W><C-Left>
 
 " vim: set et ts=2 sw=2 sts=0:
