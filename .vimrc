@@ -3,13 +3,15 @@ set backspace=indent,eol,start
 set notimeout
 set background=dark
 
-if has("mksession")
-  set sessionoptions+=unix,slash
-  set viewoptions+=unix,slash
-endif
-
 " no bell
 set vb t_vb=
+
+set listchars=tab:»\ ,space:·,eol:¬
+"set listchars=tab:>-,trail:-,eol:$
+set listchars+=extends:>,precedes:<
+
+" soft-tab set to 4 spaces
+set softtabstop=4 shiftwidth=4 expandtab
 
 " no extra keybidings except ones defined in this script
 mapclear
@@ -24,20 +26,6 @@ vnoremap <Leader><Up> @=":m '<-2\rgv"<CR>
 vnoremap <Leader>j @=":m '>+1\rgv"<CR>
 vnoremap <Leader><Down> @=":m '>+1\rgv"<CR>
 
-" <C-R> extensions: curent dir/file/full file path
-noremap! <C-R><C-E><C-W> <C-R>=getcwd()<CR>
-noremap! <C-R><C-E><C-F> <C-R>=expand("%")<CR>
-noremap! <C-R><C-E><C-P> <C-R>=expand("%:p")<CR>
-
-if has("mouse")
-  set mouse=a
-endif
-
-if has("quickfix")
-  " like <C-W><C-I> but in preview
-  nnoremap <Leader><C-W><C-I> :ps <C-R><C-W><CR>
-endif
-
 " no-magic search
 nnoremap <Leader>/ /\V
 nnoremap <Leader>? ?\V
@@ -50,20 +38,9 @@ if has("extra_search")
   nnoremap <Leader>n :noh<CR>
 endif
 
-set number
-set showmode
-if has("cmdline_info")
-  set showcmd
-endif
-
-if has("statusline")
-  set laststatus=2
-  set statusline=%n>%<
-  set statusline+=%F%m
-  set statusline+=\ [%{&ft!=''?toupper(&ft):'?'}\ %{&ff}\ %{&enc}%{&fenc!=''&&\ &fenc!=&enc?'->'.&fenc:''}]
-  set statusline+=%=\ L%l/%L\ C%c%V
-  "set statusline+=\ [0x%{printf('%X',line2byte(line('.'))+col('.')-2)}]
-  set statusline+=\ %P
+if has("quickfix")
+  " like <C-W><C-I> but in preview
+  nnoremap <Leader><C-W><C-I> :ps <C-R><C-W><CR>
 endif
 
 if has("unix")
@@ -74,15 +51,58 @@ else
   language English
 endif
 
-set listchars=tab:»\ ,space:·,eol:¬
-"set listchars=tab:>-,trail:-,eol:$
-set listchars+=extends:>,precedes:<
+if has("mouse")
+  set mouse=a
+endif
 
-" soft-tab set to 4 spaces
-set softtabstop=4 shiftwidth=4 expandtab
+set number
+set showmode
+if has("cmdline_info")
+  set showcmd
+endif
+
+if has("folding")
+  " syntax folding method
+  set foldmethod=syntax
+  set foldlevelstart=99
+endif
+
+if has("mksession")
+  set sessionoptions+=unix,slash
+  set viewoptions+=unix,slash
+endif
+
+if has("cindent")
+  " fix default indents
+  set cinoptions=:0,g0,t0,(s
+  "set cinoptions+=N-s
+endif
+
+if has("insert_expand")
+  set completeopt+=menuone,noinsert
+endif
 
 if has("eval")
-  function s:set_tab(set, ...)
+  " <C-R> extensions: curent dir/file/full file path
+  noremap! <C-R><C-E><C-W> <C-R>=getcwd()<CR>
+  noremap! <C-R><C-E><C-F> <C-R>=expand("%")<CR>
+  noremap! <C-R><C-E><C-P> <C-R>=expand("%:p")<CR>
+
+  " selected block search
+  vnoremap <Leader>* y:exe '/\V'.tr(escape(@","\\/\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>
+  vnoremap <Leader># y:exe '?\V'.tr(escape(@","\\?\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>
+
+  if has("statusline")
+    set laststatus=2
+    set statusline=%n>%<
+    set statusline+=%F%m
+    set statusline+=\ [%{&ft!=''?toupper(&ft):'?'}\ %{&ff}\ %{&enc}%{&fenc!=''&&\ &fenc!=&enc?'->'.&fenc:''}]
+    set statusline+=%=\ L%l/%L\ C%c%V
+    "set statusline+=\ [0x%{printf('%X',line2byte(line('.'))+col('.')-2)}]
+    set statusline+=\ %P
+  endif
+
+  function s:SetTab(set, ...)
     if (a:0 <= 0)
       echo "expandtab:".(&et?"space":"tab")." softtabstop:".&sts." shiftwidth:".&sw." tabstop:".&ts
       return
@@ -101,14 +121,10 @@ if has("eval")
     exe a:set." ts=".a:3
   endfunction
 
-  command -nargs=* SetTab call s:set_tab("set", <f-args>)
-  command -nargs=* SetTabLoc call s:set_tab("setl", <f-args>)
+  command -nargs=* SetTab call s:SetTab("set", <f-args>)
+  command -nargs=* SetTabLoc call s:SetTab("setl", <f-args>)
   command -range Trim <line1>,<line2>s/\s\+$//
   command TrimAll %Trim
-
-  " selected block search
-  vnoremap <Leader>* y:exe '/\V'.tr(escape(@","\\/\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>
-  vnoremap <Leader># y:exe '?\V'.tr(escape(@","\\?\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>
 
   function ByteOff()
     let b:off = line2byte(line("."))+col(".")-2
@@ -123,23 +139,7 @@ if has("eval")
   nnoremap <Leader>o :call ByteOff()<CR>
 endif
 
-if has("folding")
-  " syntax folding method
-  set foldmethod=syntax
-  set foldlevelstart=99
-endif
-
-if has("cindent")
-  " fix default indents
-  set cinoptions=:0,g0,t0,(s
-  "set cinoptions+=N-s
-endif
-
 filetype plugin indent on
-
-if has("insert_expand")
-  set completeopt+=menuone,noinsert
-endif
 
 if has("syntax")
   set colorcolumn=80
@@ -153,5 +153,25 @@ nnoremap <Leader>K :Man <C-R><C-W><CR>
 " gtags plugin config
 let Gtags_No_Auto_Jump = 1
 nnoremap <Leader>] :Gtags <C-R><C-W><C-Left>
+
+"
+" vim-plug plugins go below
+"
+if has("eval")
+  " util function to install vim-plug
+  function InstallVimPlug()
+    !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  endfunction
+
+  " vim-plug is required; if not installed exit the script
+  if strlen(globpath(&runtimepath, "autoload/plug.vim")) <= 0
+    finish
+  endif
+
+  call plug#begin('~/.vim/plugged')
+    Plug 'vim-scripts/taglist.vim'
+    Plug 'vim-scripts/gtags.vim'
+  call plug#end()
+endif
 
 " vim: set et ts=2 sw=2 sts=0:
