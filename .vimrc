@@ -151,7 +151,7 @@ runtime! ftplugin/man.vim
 nnoremap <Leader>K :Man <C-R><C-W><CR>
 
 " gtags plugin config
-let Gtags_No_Auto_Jump = 1
+let g:Gtags_No_Auto_Jump = 1
 nnoremap <Leader>] :Gtags <C-R><C-W><C-Left>
 
 "
@@ -170,7 +170,8 @@ if has("eval")
 
   call plug#begin('~/.vim/plugged')
     Plug 'vim-scripts/taglist.vim'
-    Plug 'vim-scripts/gtags.vim'
+    Plug 'edgar1470/gtags.vim'
+"    Plug 'ycm-core/YouCompleteMe'
   call plug#end()
 endif
 
