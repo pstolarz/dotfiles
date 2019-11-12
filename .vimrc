@@ -169,8 +169,7 @@ if has("eval")
   endif
 
   call plug#begin('~/.vim/plugged')
-    Plug 'mtth/taglist.vim'
-    Plug 'edgar1470/gtags.vim'
+    Plug 'pstolarz/vim-scripts'
 "    Plug 'ycm-core/YouCompleteMe'
   call plug#end()
 endif
