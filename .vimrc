@@ -45,10 +45,12 @@ endif
 
 if has("unix")
   language en_US.UTF-8
+  let s:vim_rtp = '~/.vim'
 else
   " windows settings
   set grepprg=grep\ -n
   language English
+  let s:vim_rtp = $VIM.'/vimfiles'
 endif
 
 if has("mouse")
@@ -160,7 +162,8 @@ nnoremap <Leader>] :Gtags <C-R><C-W><C-Left>
 if has("eval")
   " util function to install vim-plug
   function InstallVimPlug()
-    !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    exe '!curl -fLo '.s:vim_rtp.'/autoload/plug.vim --create-dirs '.
+      \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   endfunction
 
   " vim-plug is required; if not installed exit the script
@@ -168,7 +171,7 @@ if has("eval")
     finish
   endif
 
-  call plug#begin('~/.vim/plugged')
+  call plug#begin(s:vim_rtp.'/plugged')
     Plug 'pstolarz/vim-scripts'
 "    Plug 'ycm-core/YouCompleteMe'
   call plug#end()
