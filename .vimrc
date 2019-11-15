@@ -31,6 +31,7 @@ nnoremap <Leader>/ /\V
 nnoremap <Leader>? ?\V
 
 nnoremap <Leader><Leader> :set wrapscan!<CR>:set wrapscan?<CR>
+nnoremap <Leader>w :set wrap!<CR>:set wrap?<CR>
 
 if has("extra_search")
   set incsearch
