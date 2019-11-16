@@ -161,10 +161,13 @@ nnoremap <Leader>] :Gtags <C-R><C-W><C-Left>
 " vim-plug plugins go below
 "
 if has("eval")
+  let s:vim_rtp = expand(s:vim_rtp)
+
   " util function to install vim-plug
   function InstallVimPlug()
-    exe '!curl -fLo '.s:vim_rtp.'/autoload/plug.vim --create-dirs '.
-      \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    exe '!curl -fLo '.shellescape(s:vim_rtp.'/autoload/plug.vim').
+      \ ' --create-dirs'.
+      \ ' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   endfunction
 
   " vim-plug is required; if not installed exit the script
@@ -172,7 +175,10 @@ if has("eval")
     finish
   endif
 
-  call plug#begin(s:vim_rtp.'/plugged')
+  " vim-plug home (works much predictable when passed expanded via global var)
+  let g:plug_home = s:vim_rtp.'/plugged'
+
+  call plug#begin()
     Plug 'pstolarz/vim-scripts'
 "    Plug 'ycm-core/YouCompleteMe'
   call plug#end()
