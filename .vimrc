@@ -149,6 +149,8 @@ if has("syntax")
   syntax on
 endif
 
+command CtagsGen !ctags -R --c-kinds=+px --c++-kinds=+px . &
+
 " :Man command support
 runtime! ftplugin/man.vim
 nnoremap <Leader>K :Man <C-R><C-W><CR>
