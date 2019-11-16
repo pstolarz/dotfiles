@@ -150,6 +150,7 @@ if has("syntax")
 endif
 
 command CtagsGen !ctags -R --c-kinds=+px --c++-kinds=+px . &
+command CtagsGenFg !ctags -R --c-kinds=+px --c++-kinds=+px .
 
 " :Man command support
 runtime! ftplugin/man.vim
