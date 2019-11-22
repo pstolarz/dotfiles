@@ -32,6 +32,11 @@ nnoremap <Leader>? ?\V
 
 nnoremap <Leader><Leader> :set wrapscan!<CR>:set wrapscan?<CR>
 nnoremap <Leader>w :set wrap!<CR>:set wrap?<CR>
+nnoremap <Leader>l :set list!<CR>:set list?<CR>
+
+if has("spell")
+nnoremap <Leader>s :set spell!<CR>:set spell?<CR>
+endif
 
 if has("extra_search")
   set incsearch
@@ -151,6 +156,12 @@ endif
 
 command CtagsGen !ctags -R --c-kinds=+px --c++-kinds=+px . &
 command CtagsGenFg !ctags -R --c-kinds=+px --c++-kinds=+px .
+
+command GtagsGen !gtags &
+command GtagsGenFg !gtags
+
+command GlobalUpdate !global -u &
+command GlobalUpdateFg !global -u
 
 " :Man command support
 runtime! ftplugin/man.vim
