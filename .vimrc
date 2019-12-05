@@ -107,12 +107,12 @@ if has("eval")
   endfunction
 
   " highligh keyword under the cursor (normal mode)
-  nnoremap <Leader>* :call WinViewSave()<CR>*:call WinViewRestore()<CR>
-  nnoremap <Leader># :call WinViewSave()<CR>#:call WinViewRestore()<CR>
+  nnoremap <Leader>* :call WinViewSave()<CR>*:call WinViewRestore()<CR>:echo<CR>
+  nnoremap <Leader># :call WinViewSave()<CR>#:call WinViewRestore()<CR>:echo<CR>
 
   " selected block search (visual mode)
-  vnoremap <Leader>* y:call WinViewSave()<CR>:exe '/\V'.tr(escape(@","\\/\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>:call WinViewRestore()<CR>
-  vnoremap <Leader># y:call WinViewSave()<CR>:exe '?\V'.tr(escape(@","\\?\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>:call WinViewRestore()<CR>
+  vnoremap <Leader>* y:call WinViewSave()<CR>:exe '/\V'.tr(escape(@","\\/\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>:call WinViewRestore()<CR>:echo<CR>
+  vnoremap <Leader># y:call WinViewSave()<CR>:exe '?\V'.tr(escape(@","\\?\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>:call WinViewRestore()<CR>:echo<CR>
 
   if has("statusline")
     set laststatus=2
