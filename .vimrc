@@ -96,9 +96,23 @@ if has("eval")
   noremap! <C-R><C-E><C-F> <C-R>=expand("%")<CR>
   noremap! <C-R><C-E><C-P> <C-R>=expand("%:p")<CR>
 
-  " selected block search
-  vnoremap <Leader>* y:exe '/\V'.tr(escape(@","\\/\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>
-  vnoremap <Leader># y:exe '?\V'.tr(escape(@","\\?\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>
+  function WinViewSave()
+    let w:saved_view=winsaveview()
+  endfunction
+
+  function WinViewRestore()
+    if (exists('w:saved_view'))
+      call winrestview(w:saved_view)
+    endif
+  endfunction
+
+  " highligh keyword under the cursor (normal mode)
+  nnoremap <Leader>* :call WinViewSave()<CR>*:call WinViewRestore()<CR>
+  nnoremap <Leader># :call WinViewSave()<CR>#:call WinViewRestore()<CR>
+
+  " selected block search (visual mode)
+  vnoremap <Leader>* y:call WinViewSave()<CR>:exe '/\V'.tr(escape(@","\\/\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>:call WinViewRestore()<CR>
+  vnoremap <Leader># y:call WinViewSave()<CR>:exe '?\V'.tr(escape(@","\\?\b\e\f\n\r\t"),"\b\e\f\n\r\t","befnrt")<CR>:call WinViewRestore()<CR>
 
   if has("statusline")
     set laststatus=2
