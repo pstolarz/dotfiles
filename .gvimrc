@@ -3,7 +3,8 @@ set background=light
 " no bell
 set vb t_vb=
 
-set guioptions-=m
+" need to be commented out due to some bug in gvim with gnome 3
+"set guioptions-=m
 set guioptions-=tT
 set guioptions-=a
 set guioptions+=A

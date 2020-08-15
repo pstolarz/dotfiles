@@ -161,6 +161,9 @@ if has("eval")
   nnoremap <Leader>o :call ByteOff()<CR>
 endif
 
+au BufNewFile,BufRead *.cppm,*.ixx setf cpp
+au BufNewFile,BufRead *.y setf c
+
 filetype plugin indent on
 
 if has("syntax")
