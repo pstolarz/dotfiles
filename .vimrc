@@ -34,6 +34,9 @@ nnoremap <Leader><Leader> :set wrapscan!<CR>:set wrapscan?<CR>
 nnoremap <Leader>w :set wrap!<CR>:set wrap?<CR>
 nnoremap <Leader>l :set list!<CR>:set list?<CR>
 
+" paste last change from . register
+nnoremap <Leader>. ".P
+
 if has("spell")
 nnoremap <Leader>s :set spell!<CR>:set spell?<CR>
 endif
