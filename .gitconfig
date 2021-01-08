@@ -1,0 +1,21 @@
+[user]
+	name = Piotr Stolarz
+[push]
+	default = simple
+[alias]
+	br = branch
+	st = status
+	lg = log --oneline --decorate --graph
+	co = checkout
+	lso = ls-files -o
+	gca = gc --prune=all
+	gcaa = gc --prune=all --aggressive
+	sm = submodule
+	rfc = reflog expire --expire=now --all
+	fsr = fsck --no-reflog
+[credential "https://github.com"]
+	helper = store
+[credential "https://gist.github.com"]
+	helper = store
+[credential "https://gitlab.com"]
+	helper = store
