@@ -8,6 +8,7 @@
 	lg = log --oneline --decorate --graph
 	co = checkout
 	lso = ls-files -o
+	reh = reset --hard
 	gca = gc --prune=all
 	gcaa = gc --prune=all --aggressive
 	sm = submodule
