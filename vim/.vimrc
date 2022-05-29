@@ -165,7 +165,7 @@ if has("eval")
 endif
 
 au BufNewFile,BufRead *.cppm,*.ixx setf cpp
-au BufNewFile,BufRead *.y setf c
+au BufNewFile,BufRead *.y,*.pio setf c
 
 filetype plugin indent on
 

@@ -4,7 +4,7 @@ set background=light
 set vb t_vb=
 
 " need to be commented out due to some bug in gvim with gnome 3
-"set guioptions-=m
+set guioptions-=m
 set guioptions-=tT
 set guioptions-=a
 set guioptions+=A
