@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+if [ "$2" = "suspend" ]; then
+    case "$1" in
+        post)
+            # restart bluetooth if the service is active
+            if [ $(rfkill list bluetooth | awk '/Soft blocked: no/{print 1; exit}') = '1' ]; then
+                rfkill block bluetooth
+                rfkill unblock bluetooth
+            fi
+            ;;
+    esac
+fi
