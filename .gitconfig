@@ -20,3 +20,5 @@
 	helper = store
 [credential "https://gitlab.com"]
 	helper = store
+[credential "https://bitbucket.org"]
+	helper = store
