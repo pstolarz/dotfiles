@@ -1,4 +1,6 @@
-set background=light
+if trim(execute('colorscheme')) ==# 'default'
+  set background=light
+endif
 
 " no bell
 set vb t_vb=
@@ -8,7 +10,7 @@ set guioptions-=tT
 set guioptions-=a
 set guioptions+=A
 
-if has("unix")
+if has('unix')
   set guifont=Monospace\ 9
 else
   " windows settings
