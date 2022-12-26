@@ -12,6 +12,7 @@
 	gca = gc --prune=all
 	gcaa = gc --prune=all --aggressive
 	sm = submodule
+	smu = submodule update --init --recursive
 	rfc = reflog expire --expire=now --all
 	fsr = fsck --no-reflog
 [credential "https://github.com"]
