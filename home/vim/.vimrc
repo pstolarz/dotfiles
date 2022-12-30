@@ -39,6 +39,7 @@ nnoremap <Leader>? ?\V
 nnoremap <Leader><Leader> :set wrapscan!<CR>:set wrapscan?<CR>
 nnoremap <Leader>w :set wrap!<CR>:set wrap?<CR>
 nnoremap <Leader>l :set list!<CR>:set list?<CR>
+nnoremap <Leader>p :pclose<CR>
 
 " paste last change from . register
 nnoremap <Leader>. ".P
@@ -94,7 +95,8 @@ if has('cindent')
 endif
 
 if has('insert_expand')
-  set completeopt+=menuone,noinsert
+set completeopt=preview,menuone
+"set completeopt+=noinsert
 endif
 
 if has('wildmenu')
