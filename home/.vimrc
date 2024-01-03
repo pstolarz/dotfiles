@@ -20,6 +20,11 @@ mapclear!
 noremap <C-Up> <C-Y>
 noremap <C-Down> <C-E>
 
+noremap k gk
+noremap j gj
+noremap <Up> g<Up>
+noremap <Down> g<Down>
+
 " switch between buffers and tabs
 nnoremap ]b :bnext<CR>
 nnoremap [b :bprev<CR>
@@ -45,7 +50,7 @@ nnoremap <Leader>p :pclose<CR>
 nnoremap <Leader>. ".P
 
 if has('spell')
-nnoremap <Leader>s :set spell!<CR>:set spell?<CR>
+  nnoremap <Leader>s :set spell!<CR>:set spell?<CR>
 endif
 
 if has('extra_search')
@@ -65,6 +70,8 @@ else
   " windows settings
   set grepprg=grep\ -n
   language English
+  " use Unix slash in paths
+  set csl=slash
 endif
 
 if has('mouse')
@@ -95,13 +102,17 @@ if has('cindent')
 endif
 
 if has('insert_expand')
-set completeopt=preview,menuone
-"set completeopt+=noinsert
+  set completeopt=preview,menuone
+  "set completeopt+=noinsert
 endif
 
 if has('wildmenu')
   set wildmenu
-  set wildoptions=pum
+  try
+    " vim >= v9
+    set wildoptions=pum
+  catch
+  endtry
 endif
 
 if has('eval')
@@ -178,6 +189,13 @@ if has('eval')
 
   " byte offset of char under the cursor
   nnoremap <Leader>o :call ByteOff()<CR>
+
+  function FontSizeChange(chg)
+    let l:fsz = matchstrpos(&guifont, '[0-9]\+$')
+    if (len(l:fsz[0]) > 0)
+      exe 'set guifont='.escape(&guifont[0:l:fsz[1]-1].(l:fsz[0]+a:chg), ' ')
+    endif
+  endfunction
 endif
 
 au BufNewFile,BufRead *.ino,*.cppm,*.ixx setf cpp
@@ -204,7 +222,11 @@ runtime! ftplugin/man.vim
 nnoremap <Leader>K :Man <C-R><C-W><CR>
 
 if has('nvim')
-  au UIEnter * set guifont=Monospace:h9
+  au UIEnter * set guifont=DejaVu\ Sans\ Mono:h9
+
+  " vim has these set in .gvimrc
+  nnoremap <Leader>F :call FontSizeChange(1)<CR>:set guifont<CR>
+  nnoremap <Leader>f :call FontSizeChange(-1)<CR>:set guifont<CR>
 endif
 
 "
@@ -243,7 +265,7 @@ if has('eval')
     Plug 'morhetz/gruvbox'
     Plug 'pstolarz/vim-scripts'
     Plug 'tpope/vim-fugitive'
-    Plug 'preservim/nerdcommenter'
+    Plug 'tpope/vim-surround'
     Plug 'mhinz/vim-signify'
     Plug 'preservim/tagbar'
     Plug 'ycm-core/YouCompleteMe'
@@ -303,24 +325,16 @@ if has('eval')
     let g:ycm_min_num_of_chars_for_completion = 99
     let g:ycm_auto_hover = ''
     let g:ycm_confirm_extra_conf = 0
-    let g:ycm_show_diagnostics_ui = 0
     let g:ycm_echo_current_diagnostic = 0
     let g:ycm_key_detailed_diagnostics = '<Leader>yd'
     let g:ycm_error_symbol = 'E'
     let g:ycm_warning_symbol = 'W'
-
-    function YcmStart()
-      if g:ycm_show_diagnostics_ui == 0
-        let g:ycm_show_diagnostics_ui = 1
-        call youcompleteme#Enable()
-      endif
-    endfunction
+    let g:ycm_autoclose_preview_window_after_completion = 1
 
     nnoremap <Leader>y] :YcmCompleter GoTo
     nnoremap <Leader>yi <plug>(YCMHover)
     nnoremap <Leader>yf :YcmCompleter FixIt<CR>
     nnoremap <Leader>yl :YcmForceCompileAndDiagnostics<CR>:YcmDiags<CR>
-    nnoremap <Leader>ys :call YcmStart()<CR>
   endif
 endif
 

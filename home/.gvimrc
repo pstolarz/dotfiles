@@ -17,4 +17,9 @@ else
   set guifont=Consolas:h9
 endif
 
+if has('eval')
+  nnoremap <Leader>F :call FontSizeChange(1)<CR>:set guifont<CR>
+  nnoremap <Leader>f :call FontSizeChange(-1)<CR>:set guifont<CR>
+endif
+
 " vim: set et ts=2 sw=2 sts=0:
