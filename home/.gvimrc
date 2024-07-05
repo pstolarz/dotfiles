@@ -11,10 +11,10 @@ set guioptions-=a
 set guioptions+=A
 
 if has('unix')
-  set guifont=Monospace\ 9
+  set guifont=Monospace\ 10
 else
   " windows settings
-  set guifont=Consolas:h9
+  set guifont=Consolas:h10
 endif
 
 if has('eval')

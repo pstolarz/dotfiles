@@ -15,11 +15,3 @@
 	smu = submodule update --init --recursive
 	rfc = reflog expire --expire=now --all
 	fsr = fsck --no-reflog
-[credential "https://github.com"]
-	helper = store
-[credential "https://gist.github.com"]
-	helper = store
-[credential "https://gitlab.com"]
-	helper = store
-[credential "https://bitbucket.org"]
-	helper = store
