@@ -4,6 +4,7 @@
 	default = simple
 [alias]
 	br = branch
+	bra = branch -avv
 	st = status
 	lg = log --oneline --decorate --graph
 	co = checkout
