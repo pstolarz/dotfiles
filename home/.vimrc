@@ -269,6 +269,7 @@ if has('eval')
     Plug 'mhinz/vim-signify'
     Plug 'preservim/tagbar'
     Plug 'ycm-core/YouCompleteMe'
+    Plug 'rust-lang/rust.vim'
   call plug#end()
 
  if strlen(globpath(&runtimepath, 'plugin/airline.vim')) > 0
