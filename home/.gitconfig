@@ -17,8 +17,8 @@
 	fsr = fsck --no-reflog
 	gca = gc --prune=all
 	gcaa = gc --prune=all --aggressive
-	lg = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%C(red)%d\\ %C(reset)%s\\ %C(blue)[%cn]" --decorate --date=short --graph
-	lgg = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%C(red)%d\\ %C(reset)%s\\ %C(blue)[%cn]" --decorate --date=short --stat
+	lg = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%C(red)%d\\ %C(reset)%s\\ %C(blue)[%an]" --decorate --date=short --graph
+	lgg = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%C(red)%d\\ %C(reset)%s\\ %C(blue)[%an]" --decorate --date=short --stat
 	lso = ls-files -o
 	reh = reset --hard
 	rfc = reflog expire --expire=now --all
