@@ -222,7 +222,7 @@ runtime! ftplugin/man.vim
 nnoremap <Leader>K :Man <C-R><C-W><CR>
 
 if has('nvim')
-  au UIEnter * set guifont=DejaVu\ Sans\ Mono:h9
+  au UIEnter * set guifont=DejaVu\ Sans\ Mono:h11
 
   " vim has these set in .gvimrc
   nnoremap <Leader>F :call FontSizeChange(1)<CR>:set guifont<CR>
@@ -284,10 +284,6 @@ if has('eval')
     if exists('g:ycm_auto_hover')
       let g:airline#extensions#ycm#enabled = 1
     endif
-
-    nnoremap <Leader>hf :SignifyDiff<CR>
-    nnoremap <Leader>hd :SignifyHunkDiff<CR>
-    nnoremap <Leader>hu :SignifyHunkUndo<CR>
   endif
 
   if strlen(globpath(&runtimepath, 'colors/codedark.vim')) > 0
@@ -316,6 +312,10 @@ if has('eval')
 
   if strlen(globpath(&runtimepath, 'plugin/signify.vim')) > 0
     let g:signify_sign_change = '~'
+
+    nnoremap <Leader>hf :SignifyDiff<CR>
+    nnoremap <Leader>hd :SignifyHunkDiff<CR>
+    nnoremap <Leader>hu :SignifyHunkUndo<CR>
   endif
 
   if strlen(globpath(&runtimepath, 'plugin/tagbar.vim')) > 0
