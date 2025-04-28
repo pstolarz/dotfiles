@@ -268,6 +268,8 @@ if has('eval')
     Plug 'tpope/vim-surround'
     Plug 'mhinz/vim-signify'
     Plug 'preservim/tagbar'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
     Plug 'ycm-core/YouCompleteMe'
     Plug 'rust-lang/rust.vim'
   call plug#end()
