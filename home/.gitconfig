@@ -20,7 +20,9 @@
 	lg = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%C(red)%d\\ %C(reset)%s\\ %C(blue)[%an]" --decorate --date=short --graph
 	lgg = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%C(red)%d\\ %C(reset)%s\\ %C(blue)[%an]" --decorate --date=short --stat
 	lso = ls-files -o
+	puf = push -f
 	reh = reset --hard
+	ress = restore --staged
 	rfc = reflog expire --expire=now --all
 	sm = submodule
 	smu = submodule update --init --recursive
